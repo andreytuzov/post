@@ -1,4 +1,4 @@
-package com.itexus.post
+package com.itexus.post.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
