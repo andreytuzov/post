@@ -1,0 +1,55 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk project.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.itexus.post"
+        minSdk project.minSdkVersion
+        targetSdk project.targetSdkVersion
+        versionCode Integer.parseInt(project.VERSION_CODE)
+        versionName project.VERSION_CODE
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
+        setProperty("archivesBaseName", "post-b${versionCode}-v${versionName}")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion project.versions.compose
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    implementation project.deps.kotlinStdlib
+    implementation project.deps.appcompat
+    implementation project.deps.core
+    implementation project.deps.material
+    implementation project.deps.compose
+}
