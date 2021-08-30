@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -20,6 +21,9 @@ android {
     }
 
     buildTypes {
+        all {
+            buildConfigField "String", "SERVER_URL", "\"http://jsonplaceholder.typicode.com/\""
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -52,4 +56,14 @@ dependencies {
     implementation project.deps.core
     implementation project.deps.material
     implementation project.deps.compose
+    implementation project.deps.koin
+    implementation project.deps.timber
+
+    implementation project.deps.gson
+    implementation project.deps.network
+    
+    implementation project.deps.room
+    kapt project.deps.roomKapt
+
+    testImplementation project.deps.test
 }
