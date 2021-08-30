@@ -11,8 +11,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,6 +41,8 @@ fun PostDetailsContent(post: Post) {
             Title(title = post.title)
             Spacer(modifier = Modifier.height(10.dp))
             Body(body = post.body)
+            Spacer(modifier = Modifier.height(10.dp))
+            UserItem(post.user)
         }
         item {
             Spacer(modifier = Modifier.height(20.dp))
@@ -76,6 +78,15 @@ fun Body(body: String) {
         modifier = Modifier.fillMaxWidth(),
         text = body,
         style = MaterialTheme.typography.body1
+    )
+}
+
+@Composable
+fun UserItem(user: User) {
+    Text(
+        text = stringResource(id = R.string.author, user.name),
+        style = MaterialTheme.typography.body1,
+        fontStyle = FontStyle.Italic
     )
 }
 
