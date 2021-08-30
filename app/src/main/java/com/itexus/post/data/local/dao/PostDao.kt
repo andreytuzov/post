@@ -21,7 +21,7 @@ abstract class PostDao {
     @Transaction
     open fun replaceData(posts: List<PostWithCommentAndUser>) {
         clearAll()
-        saveUsers(posts.map { it.user })
+        saveUsers(posts.map { it.user }.distinct())
         savePosts(posts.map { it.post })
         saveComments(posts.map { it.comments }.flatten())
     }
