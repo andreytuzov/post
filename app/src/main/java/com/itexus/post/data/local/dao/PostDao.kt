@@ -10,9 +10,11 @@ import com.itexus.post.data.local.model.UserEntity
 @Dao
 abstract class PostDao {
 
+    @Transaction
     @Query("SELECT * FROM post")
     abstract fun getPosts(): LiveData<List<PostWithCommentAndUser>>
 
+    @Transaction
     @Query("SELECT * FROM post WHERE id = :postId")
     abstract fun getPost(postId: Long): LiveData<PostWithCommentAndUser>
 
